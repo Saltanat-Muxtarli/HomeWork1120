@@ -10,21 +10,37 @@ namespace HomeWork1120
 	{
 		static void Main(string[] args)
 		{
-			#region Task1
-			Circle circle = new Circle(6);
+            #region Task1
+            /*Circle circle = new Circle(6);
 			Rectangle rectangle = new Rectangle(4, 8);
 			Console.WriteLine("Dairenin sahesi: " + circle.Area());
-			Console.WriteLine("Duzbucaqlinin sahesi:" + rectangle.Area());
-			#endregion
+			Console.WriteLine("Duzbucaqlinin sahesi:" + rectangle.Area());*/
+            #endregion
 
-			#region Task 2
+            #region Task 2
+            Console.WriteLine("VISACARD");
+            double balance = 500;
+			VisaCard card = new VisaCard(balance);
+			
+            Console.WriteLine("Hesabdaki mebleg" +balance);
+			Console.Write("Odenis etmek ucun meblegi daxil edin:");
+			double amount= Convert.ToInt32(Console.ReadLine());
+			card.Payment(amount);
 
+
+
+            Console.WriteLine("MASTERCARD");
+            double balance1 = 700;
+			MasterCard masterCard = new MasterCard(balance1);
+			Console.WriteLine("Hesabdaki mebleg" + balance1);
+			Console.Write("Odenis etmek ucun meblegi daxil edin:");
+			double amount1 = Convert.ToInt32(Console.ReadLine());
 			#endregion
 
 		}
 	}
 	#region Task1
-	abstract class Shape
+	/*abstract class Shape
 	{
 		public abstract double Area();
 	}
@@ -57,9 +73,65 @@ namespace HomeWork1120
 		}
 
 
-	}
+	}*/
 	#endregion
-	#region Task 2
 
-	#endregion
+
+	#region Task 2
+	interface IBankCard
+	{
+		void Payment(double amount);
+		double ChekBalance();
+	}
+	   public class VisaCard : IBankCard
+	{
+		private double balance;
+		public VisaCard(double balance)
+		{
+			this.balance = balance;
+		}
+
+			public double ChekBalance()
+		{
+			return balance;
+		}
+
+		public void Payment(double amount)
+		{
+			if (amount > 0 && balance >= amount)
+			{
+				Console.WriteLine($"Odenis ugurla heyata kecdi");
+			}
+			else
+			{
+				Console.WriteLine($"Yetersiz balans");
+			}
+		}
+	}
+	class MasterCard : IBankCard
+	{
+		private double balance1;
+		public MasterCard(double balance1)
+		{ 
+			this.balance1 = balance1; 
+		}	
+
+		public double ChekBalance()
+		{
+			return balance1;
+		}
+
+		public void Payment(double amount)
+		{
+			if (amount > 0 && balance1 >= amount)
+			{
+				Console.WriteLine($"Odenis ugurla heyata kecdi");
+			}
+			else
+			{
+				Console.WriteLine($"Yetersiz balans");
+			}
+		}
+	}
 }
+#endregion
